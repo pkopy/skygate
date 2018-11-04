@@ -7,9 +7,8 @@ class Input extends Component {
     
     addSubInput = (e) => {
         e.preventDefault();
-        const type = e.target.getElementsByTagName('select')[0]
-        const values = serializeForm(e.target, {hash: true})
-        console.log(values)
+        const type = e.target.getElementsByTagName('select')[0];
+        const values = serializeForm(e.target, {hash: true});
         let subInput = this.props.input;
         let subInputs = subInput.subInputs;
         let token = this.props.createRandomString(10);
@@ -17,9 +16,8 @@ class Input extends Component {
         if(values.question && type.value !== '') {
             subInput.question = values.question;
             subInput.type = type.value;
-            
             subInputs.push({token, parentType: type.value, parentToken:this.props.input.token});
-            subInput.subInputs = subInputs
+            subInput.subInputs = subInputs;
             this.props.changeSubInput();
         }else {
             alert('You must fill in all fields')
@@ -29,13 +27,11 @@ class Input extends Component {
 
     delete = (e) => {
         e.preventDefault();
-        this.props.delete(this.props.input)    
+        this.props.delete(this.props.input);
     };
     change = (e) => {
         let input = this.props.input;
-        console.log(e.target)
-        console.log(this.props.input)
-        let key = e.target.name
+        let key = e.target.name;
         input[key] = e.target.value;
         
         this.props.changeSubInput();
@@ -45,17 +41,12 @@ class Input extends Component {
         const {input} = this.props
         return (
             <div>
-
-
                 <div className="input_question">
-                    <form onSubmit={this.addSubInput}>
-                        
+                    <form onSubmit={this.addSubInput}>    
                         <label>Question:</label> 
                         <input type="text" name="question" defaultValue={input.question} onChange={this.change}></input>
-                        
-                        
                         <label>Type:</label>
-                        
+
                         <select id="type" name="type" defaultValue={input.type} onChange={this.change}>
                             <option></option>
                             <option>Text</option>
@@ -68,8 +59,7 @@ class Input extends Component {
                             <button onClick={(e)=>this.delete(e)}>Delete</button>
                         </div>
                     </form>
-                </div>
-                    
+                </div>    
             </div>
         )
     };

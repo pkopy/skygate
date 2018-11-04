@@ -8,27 +8,24 @@ class SubInput extends Component {
     addSubInput = (e) => {
         
         e.preventDefault();
-        const type = e.target.querySelector('#type')
-        const yesNo = e.target.querySelector('#yes-no')
-        const condition = e.target.querySelector('#equals')
-        const values = serializeForm(e.target, {hash: true})
+        const type = e.target.querySelector('#type');
+        const yesNo = e.target.querySelector('#yes-no');
+        const condition = e.target.querySelector('#equals');
+        const values = serializeForm(e.target, {hash: true});
         let subInput = this.props.subInput;
-        console.log(values)
         let subInputs = subInput.subInputs || [];
         let token = this.props.createRandomString(10);
-        console.log(type.value)
         if(subInput.parentType === 'Yes / No'){
-            values.answer = yesNo.value ||'YES'
-        }
+            values.answer = yesNo.value ||'YES';
+        };
         if(values.question && values.answer && type.value !== '') {
             
             subInput.question = values.question;
             subInput.answer = values.answer;
             subInput.equals = (!condition) ?  'Equals' : condition.value;
             subInput.type = type.value;
-            
             subInputs.push({token, parentType: type.value, parentToken : this.props.subInput.token});
-            subInput.subInputs = subInputs
+            subInput.subInputs = subInputs;
             this.props.changeSubInput();
         } else {
             alert('You must fill in all fields')
@@ -37,30 +34,23 @@ class SubInput extends Component {
     }
     change = (e) => {
         let subInput = this.props.subInput;
-        console.log(e.target)
-        console.log(this.props.subInput)
-        let key = e.target.name
+        let key = e.target.name;
         subInput[key] = e.target.value;
-        
         this.props.changeSubInput();
     }
 
     delete = (e) => {
         e.preventDefault();
-        console.log(this.props.subInput)
-        this.props.delete(this.props.subInput)
+        this.props.delete(this.props.subInput);
     }
     render () {
         const {subInput, changeSubInput, createRandomString} = this.props;
         
         return (
             <div>
-
                 <div className="input_question">
-                    <form onSubmit={this.addSubInput} >
-                        
+                    <form onSubmit={this.addSubInput} >    
                         <label>Condition:</label> 
-                        
                             {(subInput.parentType === 'Text' || subInput.parentType === 'Yes / No') ? 
                                 <div id="answer">
                                     <select>
@@ -74,7 +64,6 @@ class SubInput extends Component {
                                     
                                 </div>
                                 : 
-
                                 <div id="answer">
                                     <select id="equals" name="equals" defaultValue={subInput.equals} onChange={this.change}>
                                         <option>Equals</option>
@@ -86,11 +75,8 @@ class SubInput extends Component {
 
                             }
                         
-                        
                         <label>Question:</label> 
                         <input type="text" name="question" placeholder="Question..." defaultValue={subInput.question} onChange={this.change}></input>
-                        
-                        
                         <label>Type:</label>
                         
                         <select id="type" name="type" defaultValue={subInput.type} onChange={this.change}>
@@ -106,7 +92,6 @@ class SubInput extends Component {
                         </div>
                     </form>
 
-
                 </div>
                 {(subInput.subInputs)?
                     (<ol>{subInput.subInputs.map((subInput, index) =>
@@ -116,11 +101,9 @@ class SubInput extends Component {
                                 changeSubInput={changeSubInput}
                                 createRandomString={createRandomString}
                                 delete={this.props.delete}
-                            />
-                                
+                            />        
                         </li>
                         )}
-
                     </ol>):(<div></div>)
                 }
             </div>

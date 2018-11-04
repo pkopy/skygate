@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Input from './Input'
-import Start from './Start'
+import Input from './Input';
+import Start from './Start';
 import SubInput from './SubInput';
 
 
@@ -14,20 +14,21 @@ class App extends Component {
   componentDidMount() {
     if(!localStorage.forms) {
       localStorage.forms = JSON.stringify([]);
-    }
+    };
     let data = JSON.parse(localStorage.forms);
-    this.setState({data})  
-  }
+    this.setState({data});
+  
+  };
 
 
   componentDidUpdate() {
-    let data = this.state.data
+    let data = this.state.data;
     localStorage.forms = JSON.stringify(data);
   }
   
 
   addToDB = () => {
-    let data = this.state.data
+    let data = this.state.data;
     localStorage.forms = JSON.stringify(data);
   }
 
@@ -44,46 +45,34 @@ class App extends Component {
           for(let sub of obj.subInputs) {
             if(sub.token !== subInput.token){
               subInputs.push(sub)
-            }
-          }
+            };
+          };
           obj.subInputs = subInputs;
           for(let dat of data) {
             newData.push(dat)
-          }
+          };
           this.setState({data:newData})  
         }else if (Array.isArray(obj[key])) {
           for(let objNext of obj[key]) {
             this.findToken(objNext, subInput)
-          }
-        }
-      }  
-    }else {
-      // console.log(subInput)
+          };
+        };
+      }  ;
+    } else {
       let newData = [];
       for(let obj of data) {
-        console.log(subInput.token)
         if(obj.token !== subInput.token) {
           newData.push(obj)
-        }
-      }
-      console.log(newData)
-      this.setState({data:newData})
-      // this.changeSubInput()
-    }
-
-    
-    
-  }
-
-  
+        };
+      };
+      this.setState({data:newData}) 
+    };
+  };
 
   delete = (subInput) => {
-    
     for(let obj of this.state.data) {
       this.findToken(obj, subInput)
-    }
-    // this.changeSubInput()
-    
+    };
   };
 
   createRandomString = (strLength) => {
@@ -94,33 +83,22 @@ class App extends Component {
       for(let i = 1; i <= strLength; i++) {
         const randomCharacter = posaibleCharacters.charAt(Math.floor(Math.random() * posaibleCharacters.length));
         str += randomCharacter;
-      }
+      };
       return str;
-    }
+    };
   };
 
   addInput = () => {
     let token = this.createRandomString(10);
     let data = this.state.data;
     data.push({token:token, subInputs : []})
-    
-    this.setState({data:data})
-    if(this.state.data.length > 0) {
-        console.log('coś jest', this.state.data.length)
-    } else {
-        console.log('pusto', this.state.data.length)
-    }
-
-    
-    
-
+    this.setState({data:data});
   }
 
   changeSubInput = () => {
     let data = this.state.data
     this.setState({data:data})
-    this.addToDB()
-    console.log(data)
+    this.addToDB();
   }
   render() {
     const {data}  = this.state;
