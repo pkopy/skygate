@@ -72,9 +72,7 @@ button {
     background-color: rgb(26, 68, 160);
     box-shadow: -1px 1px 14px rgb(114, 114, 119);
   }
-  #equals {
-      width: 10em
-  }
+  
 
   #answer {
       display: flex;
