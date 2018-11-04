@@ -13,8 +13,10 @@ body {
     margin-right: auto;
     margin-top: 1em;
 }
-
-input[type=text], select {
+ol {
+    list-style-type: none;
+}
+input[type=text], input[type=number], select {
     width: 100%;
     padding: 1em;
     border: 1px solid #ccc;
@@ -23,13 +25,21 @@ input[type=text], select {
     margin-top: .6em;
     margin-bottom: 1em;
     resize: vertical;
+    margin-right: .2em;
 }
 
+
+#sub {
+    margin-left: auto;
+    width: fit-content;
+}
 input[type=submit] {
     background-color: rgb(29, 154, 204);
     color: white;
-    padding: 1em 2em;
+    padding: 1em 1em;
+    min-width: 8em;
     margin-top: .6em;
+    margin-left: .6em;
     border: none;
     border-radius: .4em;
     cursor: pointer;
@@ -45,3 +55,27 @@ form {
     padding: .5em;
     text-align: left
 }
+
+button {
+    background-color: rgb(29, 154, 204);
+      color: white;
+      padding: 1em 1em;
+      min-width: 8em;
+      margin-top: .6em;
+      margin-left: .6em;
+      border: none;
+      border-radius: .4em;
+      cursor: pointer;
+      transition-duration: 0.4s;
+  }
+  button:hover {
+    background-color: rgb(26, 68, 160);
+    box-shadow: -1px 1px 14px rgb(114, 114, 119);
+  }
+  #equals {
+      width: 10em
+  }
+
+  #answer {
+      display: flex;
+  }
