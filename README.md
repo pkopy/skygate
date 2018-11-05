@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Install app
 
-Clone this repository and in the project directory, You run:
+Clone this repository and in the project directory run:
 
 ### `npm install`
 
