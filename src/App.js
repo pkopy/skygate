@@ -59,7 +59,7 @@ class App extends Component {
       }  ;
 
     } else {
-      
+
       let newData = [];
       for(let obj of data) {
         if(obj.token !== subInput.token) {
@@ -108,6 +108,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <h1>Form builder</h1>
+          
         </header>
         
         {(data.length > 0)?
