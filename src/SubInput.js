@@ -15,11 +15,12 @@ class SubInput extends Component {
         let subInput = this.props.subInput;
         let subInputs = subInput.subInputs || [];
         let token = this.props.createRandomString(10);
+
         if(subInput.parentType === 'Yes / No'){
             values.answer = yesNo.value ||'YES';
         };
+
         if(values.question && values.answer && type.value !== '') {
-            
             subInput.question = values.question;
             subInput.answer = values.answer;
             subInput.equals = (!condition) ?  'Equals' : condition.value;
@@ -37,12 +38,13 @@ class SubInput extends Component {
         let key = e.target.name;
         subInput[key] = e.target.value;
         this.props.changeSubInput();
-    }
+    };
 
     delete = (e) => {
         e.preventDefault();
         this.props.delete(this.props.subInput);
-    }
+    };
+
     render () {
         const {subInput, changeSubInput, createRandomString} = this.props;
         
@@ -72,7 +74,6 @@ class SubInput extends Component {
                                     </select>
                                     <input  type="number" name="answer" defaultValue={subInput.answer} onChange={this.change}></input>
                                 </div>
-
                             }
                         
                         <label>Question:</label> 

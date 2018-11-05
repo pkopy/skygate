@@ -17,7 +17,6 @@ class App extends Component {
     };
     let data = JSON.parse(localStorage.forms);
     this.setState({data});
-  
   };
 
 
@@ -58,7 +57,9 @@ class App extends Component {
           };
         };
       }  ;
+
     } else {
+      
       let newData = [];
       for(let obj of data) {
         if(obj.token !== subInput.token) {
@@ -120,18 +121,16 @@ class App extends Component {
           />
           
           {(input.subInputs)?
-            (<ol>{input.subInputs.map((subInput, index) =>
-                
-                <li key={index}>
-                    <SubInput 
-                      subInput={subInput}
-                      changeSubInput={this.changeSubInput}
-                      createRandomString={this.createRandomString}
-                      delete={this.delete}
-                    />    
-                </li>
-                )}
-
+            (<ol>{input.subInputs.map((subInput, index) =>  
+              <li key={index}>
+                  <SubInput 
+                    subInput={subInput}
+                    changeSubInput={this.changeSubInput}
+                    createRandomString={this.createRandomString}
+                    delete={this.delete}
+                  />    
+              </li>
+              )}
             </ol>):(<div></div>)
           }
         </li>)}

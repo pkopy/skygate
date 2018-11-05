@@ -29,13 +29,14 @@ class Input extends Component {
         e.preventDefault();
         this.props.delete(this.props.input);
     };
+
     change = (e) => {
         let input = this.props.input;
         let key = e.target.name;
         input[key] = e.target.value;
         
         this.props.changeSubInput();
-    }
+    };
 
     render () {
         const {input} = this.props
